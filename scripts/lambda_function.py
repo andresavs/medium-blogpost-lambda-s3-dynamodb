@@ -32,7 +32,7 @@ def lambda_handler(event, context):
             #Print dos itens selecionados
             #print(registros['Região'],registros['Sigla'],registros['Estado'],registros['População'])
             
-            tabela = dynamodb.Table('estados-brasil-pib-populacao')
+            tabela = dynamodb.Table('populacao-pib-estados-brasil')
             tabela.put_item(Item={
                 'regiao': registros['Região'],
                 'uf': registros['Sigla'],

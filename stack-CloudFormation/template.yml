@@ -41,7 +41,7 @@ Parameters:
   NomeTabela:
     Description: "Nome Tabela do DynamoDB"
     Type: String
-    Default: "cf-estados-brasil-pib-populacao"   
+    Default: "cf-populacao-pib-estados-brasil"   
   
   NomeAtributo1:
     Description: "Digite o nome do campo de Partition Key"
