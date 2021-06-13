@@ -1,0 +1,218 @@
+[
+  {
+    "País": "Brasil",
+    "Região": "Norte",
+    "Sigla": "AC",
+    "Estado": "Acre",
+    "População": 732.793,
+    "PIB (R$)": "8.477.000"
+  },
+  {
+    "País": "Brasil",
+    "Região": "Nordeste",
+    "Sigla": "AL",
+    "Estado": "Alagoas",
+    "População": "3.120.922",
+    "PIB (R$)": "24.575.000"
+  },
+  {
+    "País": "Brasil",
+    "Região": "Norte",
+    "Sigla": "AP",
+    "Estado": "Amapá",
+    "População": 668.689,
+    "PIB (R$)": "8.266.000"
+  },
+  {
+    "País": "Brasil",
+    "Região": "Norte",
+    "Sigla": "AM",
+    "Estado": "Amazonas",
+    "População": "3.480.937",
+    "PIB (R$)": "59.779.000"
+  },
+  {
+    "País": "Brasil",
+    "Região": "Nordeste",
+    "Sigla": "BA",
+    "Estado": "Bahia",
+    "População": "14.021.432",
+    "PIB (R$)": "154.340.000"
+  },
+  {
+    "País": "Brasil",
+    "Região": "Nordeste",
+    "Sigla": "CE",
+    "Estado": "Ceara",
+    "População": "8.448.055",
+    "PIB (R$)": "77.865.000"
+  },
+  {
+    "País": "Brasil",
+    "Região": "Centro-Oeste",
+    "Sigla": "DF",
+    "Estado": "Distrito Federal",
+    "População": "2.562.963",
+    "PIB (R$)": "149.906.000"
+  },
+  {
+    "País": "Brasil",
+    "Região": "Sudeste",
+    "Sigla": "ES",
+    "Estado": "Espírito Santo",
+    "População": "3.512.672",
+    "PIB (R$)": "82.122.000"
+  },
+  {
+    "País": "Brasil",
+    "Região": "Centro-Oeste",
+    "Sigla": "GO",
+    "Estado": "Goiás",
+    "População": "6.004.045",
+    "PIB (R$)": "97.576.000"
+  },
+  {
+    "País": "Brasil",
+    "Região": "Nordeste",
+    "Sigla": "MA",
+    "Estado": "Maranhão",
+    "População": "6.569.683",
+    "PIB (R$)": "45.256.000"
+  },
+  {
+    "País": "Brasil",
+    "Região": "Centro-Oeste",
+    "Sigla": "MT",
+    "Estado": "Mato Grosso",
+    "População": "3.033.991",
+    "PIB (R$)": "59.600.000"
+  },
+  {
+    "País": "Brasil",
+    "Região": "Centro-Oeste",
+    "Sigla": "MS",
+    "Estado": "Mato Grosso do Sul",
+    "População": "2.449.341",
+    "PIB (R$)": "43.514.000"
+  },
+  {
+    "País": "Brasil",
+    "Região": "Sudeste",
+    "Sigla": "MG",
+    "Estado": "Minas Gerais",
+    "População": "19.595.309",
+    "PIB (R$)": "351.381.000"
+  },
+  {
+    "País": "Brasil",
+    "Região": "Norte",
+    "Sigla": "PA",
+    "Estado": "Pará",
+    "População": "7.588.078",
+    "PIB (R$)": "77.848.000"
+  },
+  {
+    "País": "Brasil",
+    "Região": "Nordeste",
+    "Sigla": "PB",
+    "Estado": "Paraíba",
+    "População": "3.766.834",
+    "PIB (R$)": "31.947.000"
+  },
+  {
+    "País": "Brasil",
+    "Região": "Sul",
+    "Sigla": "PR",
+    "Estado": "Paraná",
+    "População": "10.439.601",
+    "PIB (R$)": "217.290.000"
+  },
+  {
+    "País": "Brasil",
+    "Região": "Nordeste",
+    "Sigla": "PE",
+    "Estado": "Pernambuco",
+    "População": "8.796.032",
+    "PIB (R$)": "95.187.000"
+  },
+  {
+    "País": "Brasil",
+    "Região": "Nordeste",
+    "Sigla": "PI",
+    "Estado": "Piauí",
+    "População": "3.119.015",
+    "PIB (R$)": "22.060.000"
+  },
+  {
+    "País": "Brasil",
+    "Região": "Sudeste",
+    "Sigla": "RJ",
+    "Estado": "Rio de Janeiro",
+    "População": "15.993.583",
+    "PIB (R$)": "407.123.000"
+  },
+  {
+    "País": "Brasil",
+    "Região": "Nordeste",
+    "Sigla": "RN",
+    "Estado": "Rio Grande do Norte",
+    "População": "3.168.133",
+    "PIB (R$)": "32.339.000"
+  },
+  {
+    "País": "Brasil",
+    "Região": "Sul",
+    "Sigla": "RS",
+    "Estado": "Rio Grande do Sul",
+    "População": "10.695.532",
+    "PIB (R$)": "252.483.000"
+  },
+  {
+    "País": "Brasil",
+    "Região": "Norte",
+    "Sigla": "RO",
+    "Estado": "Rondônia",
+    "População": "1.560.501",
+    "PIB (R$)": "23.561.000"
+  },
+  {
+    "País": "Brasil",
+    "Região": "Norte",
+    "Sigla": "RR",
+    "Estado": "Roraima",
+    "População": 451.227,
+    "PIB (R$)": "6.341.000"
+  },
+  {
+    "País": "Brasil",
+    "Região": "Sul",
+    "Sigla": "SC",
+    "Estado": "Santa Catarina",
+    "População": "6.249.682",
+    "PIB (R$)": "152.482.000"
+  },
+  {
+    "País": "Brasil",
+    "Região": "Sudeste",
+    "Sigla": "SP",
+    "Estado": "São Paulo",
+    "População": "41.252.160",
+    "PIB (R$)": "1.247.596.000"
+  },
+  {
+    "País": "Brasil",
+    "Região": "Nordeste",
+    "Sigla": "SE",
+    "Estado": "Sergipe",
+    "População": "2.068.031",
+    "PIB (R$)": "23.932.000"
+  },
+  {
+    "País": "Brasil",
+    "Região": "Norte",
+    "Sigla": "TO",
+    "Estado": "Tocantins",
+    "População": "1.383.453",
+    "PIB (R$)": "17.240.000"
+  }
+]
