@@ -72,10 +72,13 @@ Parameters:
 Resources:
   S3: 
     Type: AWS::S3::Bucket
-    DependsOn:
-      - "LambdaFunction"
     Properties:
       BucketName: !Ref NomeBucket
+      PublicAccessBlockConfiguration: 
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
       NotificationConfiguration:
         LambdaConfigurations:
           - Event: 's3:ObjectCreated:Put'
