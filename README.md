@@ -21,10 +21,11 @@ Artigo introdutório sobre CloudFormation + Stack que utilizamos no Artigo Hands
 - ./scripts/lambda_function.py - Script básico em python que faz leitura do arquivo no bucket S3 e cria os registros no DynamoDB.
 
 - ./stack-CloudFormation/template.yml - Template de CloudFormation que cria a mesma stack que criamos via console no Artigo Hands-On.
+- ./stack-CloudFormation/ttemplate-changeset.yml - Cópia do template.yml com um bucket a mais para criar um change stack.
 
 
 ### Observações
 
 - Script Python tem alguns prints comentados, eles foram usados para teste com jupyter notebook na construção do código. E usados como exemplo do Hands-On, mas **não devemos colocar print em Lambda Function**.
 
-- O template de CloudFormation não está seguindo as melhores práticas em algumas seções como Metadatas e Parameters, por exemplo, pois queria demonstrar algumas opções nesse Hands-On.
+- O template de CloudFormation não está seguindo as melhores práticas em algumas seções como Metadatas e Parameters, por exemplo, pois queria demonstrar algumas opções nesse Hands-On. Mais detalhes no artigo do medium.
