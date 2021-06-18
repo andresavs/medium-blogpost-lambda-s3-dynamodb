@@ -7,7 +7,7 @@ Artigo Hands-On: [Importando dados do S3 para o DynamoDB usando uma Lambda Funct
 Artigo de Introdução para AWS Lambda: [AWS Lambda x Lambda Function x Lambda Application x Lambda@Edge](https://andresaviana.medium.com/aws-lambda-x-lambda-function-x-lambda-application-x-lambda-edge-15015be1812e)
 
 
-Artigo introdutório sobre CloudFormation + Stack que utilizamos no Artigo Hands-On: []()
+Artigo introdutório sobre CloudFormation + Stack que utilizamos no Artigo Hands-On: [Entendendo AWS CloudFormation](https://andresaviana.medium.com/entendendo-aws-cloudformation-f292b9a2e6cb)
 
 
 ### Estrutura
