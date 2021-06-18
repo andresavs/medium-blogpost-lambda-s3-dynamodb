@@ -27,7 +27,6 @@ Metadata:
         default: "Primary Key - Add Sort Key"  
 
 Parameters:
-
   NomeProjeto:
     Description: "Digite o nome do projeto"
     Type: String
