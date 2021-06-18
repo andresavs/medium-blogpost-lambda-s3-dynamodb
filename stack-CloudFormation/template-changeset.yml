@@ -1,0 +1,208 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: "Esse CloudFormation cria a infraestrutura utilizada no blogpost do medium - Bucket S3, Lambda Function, IAM Policy, IAM Role, DynamoDB Table"
+  
+Metadata:
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+      - Label: 
+         default: "Projeto"
+        Parameters:
+          - NomeProjeto
+      - Label: 
+         default: "Configuracao do S3"
+        Parameters:
+          - NomeBucket  
+      - Label: 
+         default: "Configuracao do DynamoDB"
+        Parameters:
+          - NomeTabela
+          - NomeAtributo1
+          - KeyType1
+          - NomeAtributo2
+          - KeyType2
+    ParameterLabels:
+      NomeAtributo1:
+        default: "Primary Key"
+      NomeAtributo2:
+        default: "Primary Key - Add Sort Key"  
+
+Parameters:
+  NomeProjeto:
+    Description: "Digite o nome do projeto"
+    Type: String
+    Default: "medium-data-from-s3-to-dynamodb" 
+
+  NomeBucket:
+    Description: "Nome do Bucket S3"
+    Type: String
+    Default: "cf-s3-medium-data-from-s3-to-dynamodb"   
+
+  NomeTabela:
+    Description: "Nome Tabela do DynamoDB"
+    Type: String
+    Default: "cf-populacao-pib-estados-brasil"   
+  
+  NomeAtributo1:
+    Description: "Digite o nome do campo de Partition Key"
+    Type: String
+    Default: "regiao"  
+
+  KeyType1:
+    Description: "Partition Key"
+    Type: String
+    Default: "HASH"  
+    AllowedValues:
+      - "HASH"
+      - "RANGE"
+
+  NomeAtributo2:
+    Description: "Digite o nome do campo de Sort Key"
+    Type: String
+    Default: "uf"  
+
+  KeyType2:
+    Description: "Sort Key"
+    Type: String
+    Default: "RANGE"  
+    AllowedValues:
+      - "HASH"
+      - "RANGE" 
+
+Resources:
+  S3teste: 
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: "teste-medium-blogpost-xxxxx"
+
+  S3: 
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref NomeBucket
+      PublicAccessBlockConfiguration: 
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      NotificationConfiguration:
+        LambdaConfigurations:
+          - Event: 's3:ObjectCreated:Put'
+            Function: !GetAtt LambdaFunction.Arn   
+  
+  DynamoDBTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      BillingMode: "PAY_PER_REQUEST"
+      TableName: !Ref NomeTabela
+      AttributeDefinitions:
+      - AttributeName: !Ref NomeAtributo1
+        AttributeType: S
+      - AttributeName: !Ref NomeAtributo2
+        AttributeType: S
+      KeySchema: 
+      - AttributeName: !Ref NomeAtributo1
+        KeyType: !Ref KeyType1
+      - AttributeName: !Ref NomeAtributo2
+        KeyType: !Ref KeyType2   
+
+  LambdaFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        ZipFile: !Sub |
+          import json
+          import urllib.parse
+          from pprint import pprint
+          import boto3
+
+          def lambda_handler(event, context):
+              
+              s3 = boto3.client('s3')
+              dynamodb = boto3.resource('dynamodb')
+
+              # Recuperar o nome do bucket do payload 
+              bucket = event['Records'][0]['s3']['bucket']['name']
+              
+              # Recuperar nome do arquivo do payload 
+              nomearquivo = urllib.parse.unquote_plus(event['Records'][0]['s3']['object']['key'], encoding='utf-8')
+              
+              try:
+                  
+                  # Buscar o arquivo do bucket S3
+                  arquivo = s3.get_object(Bucket=bucket, Key=nomearquivo)
+                  
+                  # Desserializar o conteúdo do arquivo
+                  texto = arquivo['Body'].read().decode()
+                  dados = json.loads(texto)
+                  
+                  # Print do conteúdo do arquivo
+                  # print(dados)
+                  
+                  # Iteração para selecionar as colunas e gravar os dados no DynamoDB 
+                  for registros in dados:
+                      
+                      #Print dos itens selecionados
+                      #print(registros['Região'],registros['Sigla'],registros['Estado'],registros['População'])
+                      
+                      tabela = dynamodb.Table('${NomeTabela}')
+                      tabela.put_item(Item={
+                          'regiao': registros['Região'],
+                          'uf': registros['Sigla'],
+                          'nome': registros['Estado'],
+                          'populacao': str(registros['População']),
+                          'pib': str(registros['PIB (R$)'])
+                      })
+
+              except Exception as e:
+                  print(e)
+                  print('Error getting object {} from bucket {}.'.format(nomearquivo, bucket))
+                  raise e
+      FunctionName: !Join [ "-", [ "cf", "lambda", !Ref NomeProjeto ] ]
+      Handler: "index.lambda_handler"
+      Role: !GetAtt LambdaFunctionRoleIAM.Arn
+      Runtime: "python3.8"
+      Timeout: 60
+
+  S3InvokeLambdaFunctionPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !GetAtt LambdaFunction.Arn
+      Principal: "s3.amazonaws.com" 
+      SourceArn: !Sub arn:aws:s3:::${NomeBucket}   
+
+  LambdaFunctionRoleIAM:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument: |
+        {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        }
+      Description: "Role utilizada por uma Lambda Function"
+      Policies:
+        - PolicyName: !Join [ "-", [ "cf", "iam-policy", !Ref NomeProjeto ] ]
+          PolicyDocument: 
+            Version: '2012-10-17'
+            Statement:
+            - Effect: Allow
+              Action:
+              - dynamodb:PutItem
+              - dynamodb:GetShardIterator
+              - dynamodb:DescribeStream
+              - dynamodb:ListStreams
+              - dynamodb:GetRecords
+              - s3:List*
+              - s3:Get*
+              - logs:CreateLogGroup
+              - logs:PutLogEvents
+              - logs:CreateLogStream
+              Resource: "*"
+      RoleName: !Join [ "-", [ "cf", "iam-role", !Ref NomeProjeto ] ]                 
