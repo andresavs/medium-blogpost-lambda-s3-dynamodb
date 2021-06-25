@@ -12,7 +12,7 @@ Artigo introdutório sobre CloudFormation + Stack que utilizamos no Artigo Hands
 
 ### Estrutura
 
-- ./dados/CustomPolicy_LambdaS3DynamoDB.json - .json da Policy customizada que criamos no IAM.
+- ./dados/CustomPolicy_LambdaS3DynamoDB.json - .json da Policy customizada que criamos no IAM. A permissão está bem básica, poderíamos deixar mais restrita ainda.
 - ./dados/dados-estados-brasil.json - Arquivo com os dados de PIB e População dos estados brasileiros. Fonte: (IBGE 2010)
 - ./dados/lambda-test-event.json - Paylod S3 extraído do [site AWS](https://docs.aws.amazon.com/lambda/latest/dg/with-s3.html). Utilizado para testar a função lambda pelo console, simula o upload de arquivo no bucket S3.
     - Necessário alterar linha 23 (nome do seu bucket S3) e linha 30 (nome do arquivo que está no bucket S3).
